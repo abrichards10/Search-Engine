@@ -10,7 +10,7 @@ This is a search engine I built from scratch while taking a class in Software De
 - Converts all processed URLs to a consistent absolute form
 - ... and much more
 
-**In order to use it, one must have the following: **
+**In order to use it, one must have the following:**
 - A directory the user wants to traverse through
 - An argument String that tells the Driver to traverse through said directory
   - argument example: -html https://www.cs.usfca.edu/~cs212/ -server 8080 -max 100 -threads 3
