@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.usfca.cs.cs212</groupId>
+	<artifactId>SearchEngine</artifactId>
+	<version>2021-06</version>
+
+	<!-- debugging -->
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>15</maven.compiler.release>
+
+		<!-- dependency versions -->
+		<jettyVersion>11.0.3</jettyVersion>
+		<logj4Version>2.14.1</logj4Version>
+
+		<!-- compiler arguments -->
+		<compileOptionXlint>-Xlint:all</compileOptionXlint>
+		<compileOptionXdoclint>-Xdoclint:all/private</compileOptionXdoclint>
+		<compileOptionFail>false</compileOptionFail>
+	</properties>
+
+	<dependencies>
+		<!-- for unit testing -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.7.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>1.7.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- for stemming words -->
+		<dependency>
+			<groupId>org.apache.opennlp</groupId>
+			<artifactId>opennlp-tools</artifactId>
+			<version>1.9.3</version>
+		</dependency>
+
+		<!-- for logging -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${logj4Version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${logj4Version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${logj4Version}</version>
+		</dependency>
+
+		<!-- for apache commons -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.9</version>
+		</dependency>
+
+		<!-- for jetty -->
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>${jettyVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>${jettyVersion}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- assumes SearchEngine and SearchEngineTest are in the same directory -->
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>../project-tests/src/test/java</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+
+				<configuration>
+					<source>${maven.compiler.release}</source>
+					<target>${maven.compiler.release}</target>
+
+					<compilerArgs>
+						<arg>${compileOptionXlint}</arg>
+						<arg>${compileOptionXdoclint}</arg>
+					</compilerArgs>
+
+					<failOnWarning>${compileOptionFail}</failOnWarning>
+					<showWarnings>true</showWarnings>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+
+				<configuration>
+					<excludes>
+						<exclude />
+					</excludes>
+
+					<workingDirectory>../project-tests/</workingDirectory>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M5</version>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

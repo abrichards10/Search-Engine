@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<style>
+
+  <meta charset="utf-8">
+  <title>${title}</title>
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+	padding: 10px;
+	text-align: center;
+}
+
+header {
+	background-color: #435662;
+	padding: 30px;
+	text-align: center;
+	font-size: 35px;
+	color: white;
+	border-radius: 40px;
+}
+
+label {
+	background-color: #a0a0a0;
+	padding: 5px;
+	color: white;
+	border-radius: 40px;
+}
+
+</style>
+</head>
+
+ <header>
+ 	<h1>KevSearch</h1>
+ </header>
+
+<body>  
+  
+  ${messages}
+
+  <form method="${method}" action="${action}">
+    
+    <p>
+      <label for="message">Search</label>
+      <input type="text" name="message" id="message" maxlength="100" size="60">
+    </p>
+    
+    <p><input type="submit" value="search"></p>
+  </form>
+  
+  <button onclick="showContent()">more info</button>
+  
+  <template>
+  	<h3>Origins of KevSearch</h3>
+  	<p>Although the tile was inspired by my cousin known as 'Kevin', and is 
+  	certainly the most valuable aspect of the search engine, this code also 
+  	has the ability to traverse through any given directory with a String of 
+  	specific arguments, and use partial search on various terms. It incorporates 
+  	mapping, parsing and multithreading techniques. 
+  	</p>
+  </template>
+  
+  <script>
+	  function showContent(){
+	  var temp = document.getElementsByTagName("template")[0];
+	  var clon = temp.content.cloneNode(true);
+	  document.body.appendChild(clon);
+  	}
+  	
+  </script>
+    
+</body>
+</html>
